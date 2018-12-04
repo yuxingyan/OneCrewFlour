@@ -1,0 +1,143 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'rawfoodinstore.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script language="javascript" type="text/javascript">
+	function test(){
+ var url = "rawfoodinstore";
+ window.location.href= url;
+}
+		//弹出信息窗口
+		 function show(obj){
+       
+        var x = window.screen.height;
+    var y = window.screen.width;
+    var h = 400;
+    var w = 600;
+    var model = "title=word,resizable=yes,scrollbars=no,height=" + h + ",width=" + w + ",status=no,toolbar=no,menubar=no,location=no,top=" + (x-h)/2 + ",left=" + (y-w)/2;
+    var url = "";
+
+    url = "inquireclient.jsp";//弹出窗口的页面内容
+    var oOpen = window.open(url,"add",model);
+    oOpen.focus();
+    }
+
+   function Check(){
+   
+   var n1=document.getElementById("rawstore").value;
+   var n2=document.getElementById("op").value;
+   var n3=document.getElementById("date").value;
+   var n4=document.getElementById("addresstext").value;
+ 
+      var n5=document.getElementById("nametext").value;
+   var erroring="";
+ 
+  if(n1==""||n1==null){
+  erroring+="请输入小麦重量!"+'\n';
+  }
+  if(n2==""||n2==null){
+  erroring+="请输入客户编号!"+'\n';
+  }
+ if(n3==""||n3==null){
+  erroring+="请输入日期!"+'\n';
+  }
+ if(n4==""||n4==null){
+  erroring+="请输入客户地址!"+'\n';
+  }
+ if(n5==""||n5==null){
+  erroring+="请输入客户姓名!"+'\n';
+  }
+  
+  if(erroring.length!=0){
+  alert(erroring);
+  return false;
+
+  
+  }else{
+  alert("保存成功！");
+     document.form1.submit();    
+  
+  }
+
+  
+  
+ }  
+   
+
+
+		 </script>
+  </head>
+ 
+  <body>
+   <form action="addinstore" id="form1" name="form1">
+<strong style="font-size:25px">原粮兑换面粉</strong>|原粮入库
+<center>
+<table border="1" cellspacing="0" bordercolor="#8EE1F6">
+
+	<tr align="center" >
+		<td colspan="4" align="center"><strong>原粮入库</strong></td>
+	</tr>
+	  
+	<tr>
+		<td align="right" bgcolor="#f1f1f1">凭证编号：</td>
+		<td bgcolor="#f1f1f1"><input value="${count}"type="text" name="instore.eid"readonly/></td>
+		<td bgcolor="#f1f1f1">日期：</td>
+		<td bgcolor="#f1f1f1"><input type="date" id="date" name="instore.date"/></td>
+	</tr>
+	<input type="hidden" id="op" name="bian"/>
+	<tr>
+		<td align="right" bgcolor="#f1f1f1">编号：</td>
+		
+		<td  bgcolor="#f1f1f1" id="idtext"><input  type="button" onclick="show(this);" value="获取"readonly/></td>
+		<td bgcolor="#f1f1f1">姓名：</td>
+		 
+		<td bgcolor="#f1f1f1"><input id="nametext"  style="background-color:#f1f1f1"type="text" value=""readonly/></td>
+		
+	</tr>
+	
+	<tr>
+		<td align="right"  bgcolor="#f1f1f1" >地址：</td>
+		<td colspan="3"  bgcolor="#f1f1f1"><input id="addresstext"  style="background-color:#f1f1f1" value="" type="text"/ size="55"readonly></td>
+	</tr>
+	<tr>
+		<td colspan="4">交易明细</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2" align="center" bgcolor="#f1f1f1">名称</td>
+		<td colspan="2" align="center" bgcolor="#f1f1f1">重量</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center" bgcolor="#f1f1f1">小麦</td>
+		<td colspan="2" bgcolor="#f1f1f1"><input type="text"name="instore.weight" id="rawstore"/></td>
+	</tr>
+	
+
+	<tr>
+		<td colspan="2" align="center"><input type="button"onclick="Check();"  value="保存"/></td>
+		<td colspan="2" align="center"><input type="button" value="取消" onclick="test();"/></td>
+	</tr>
+
+</table>
+</center>
+</form>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+package cn.com.dao;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.FlourstoreBiz;
+import cn.com.pojo.Flourstore;
+import cn.com.services.BaseDao;
+@Repository("flourstoreDao")
+public class FlourstoreDao extends BaseDao implements FlourstoreBiz {
+	public void addflourstore(String type,Float weight){
+		Flourstore flourstore=new Flourstore();
+		flourstore.setType(type);
+		flourstore.setMillweight(weight);
+		super.save(flourstore);
+		
+	}
+
+}

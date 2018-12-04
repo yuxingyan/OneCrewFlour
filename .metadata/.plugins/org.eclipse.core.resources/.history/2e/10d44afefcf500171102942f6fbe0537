@@ -1,0 +1,102 @@
+package cn.com.action;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.ClientstoreBiz;
+import cn.com.biz.FlourstoreBiz;
+import cn.com.pojo.Checkstore;
+import cn.com.pojo.Clientstore;
+import cn.com.pojo.Flourstore;
+@Controller("checkflourstoreAction")
+public class CheckflourstoreAction extends ActionSupport {
+	@Resource(name="flourstoreDao")
+	private FlourstoreBiz flourstoreBiz;
+	@Resource(name="clientstoreDao")
+	private ClientstoreBiz clientstoreBiz;
+	public String init(){
+		String result="error";
+		List<Flourstore> flourstore=flourstoreBiz.findAll();
+		List<Clientstore> clientstore=clientstoreBiz.findAll();
+		List<Checkstore> store = new ArrayList();
+		Checkstore cstore=new Checkstore();
+		int f=0;
+		Float s=(float) 0;
+		int i=0;
+		int j=0;
+		int p=0;
+		if(flourstore!=null||clientstore!=null){
+			for( i=0;i<flourstore.size();i++){
+				for( j=0;j<clientstore.size();j++){
+					if(flourstore.get(i).getType().equals(clientstore.get(j).getType())){
+						System.out.println("f"+flourstore.get(i).getType());
+						System.out.println("c"+clientstore.get(j).getType());
+						f++;
+						cstore.setId(f);
+						cstore.setClientstore(clientstore.get(j).getWeight());
+						cstore.setSumstore(flourstore.get(i).getMillweight()+clientstore.get(j).getWeight());
+						cstore.setType(flourstore.get(i).getType());
+						store.add(cstore);
+						p=1;
+						
+					}else{
+					
+						f++;
+						cstore.setId(f);
+						cstore.setClientstore(clientstore.get(j).getWeight());
+						cstore.setType(clientstore.get(j).getType());
+						cstore.setSumstore(clientstore.get(j).getWeight());
+						store.add(cstore);
+						if(p!=1){
+						f++;
+						cstore.setId(f);
+						cstore.setClientstore(s);
+						cstore.setType(flourstore.get(i).getType());
+						cstore.setSumstore(clientstore.get(j).getWeight());
+						store.add(cstore);
+						}
+						
+					}
+					
+				}
+				 
+			}
+			if(i<flourstore.size()-1){
+				for(int k=i+1;k<flourstore.size();k++){
+					f++;
+					cstore.setClientstore(s);
+					cstore.setId(f);
+					cstore.setSumstore(flourstore.get(k).getMillweight());
+					cstore.setType(flourstore.get(k).getType());
+				}
+			}
+			if(j<clientstore.size()-1){
+				for(int k=i+1;k<clientstore.size();k++){
+					f++;
+					cstore.setClientstore(clientstore.get(k).getWeight());
+					cstore.setId(f);
+					cstore.setSumstore(clientstore.get(k).getWeight());
+					cstore.setType(clientstore.get(k).getType());
+				}
+				
+			}
+			System.out.println(store.size());
+			ServletActionContext.getRequest().getSession().setAttribute("list", store);
+			
+			result="initsuccess";
+			
+		}
+		else{
+			result="initsuccess";
+		}
+		return result;
+	}
+
+}

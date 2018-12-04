@@ -1,0 +1,98 @@
+package cn.com.pojo;
+
+import java.util.Date;
+
+
+/**
+ * Change entity. @author MyEclipse Persistence Tools
+ */
+
+public class Change  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Integer changeid;
+     private Integer clientid;
+     private Float pay;
+     private Date date;
+     private String changetype;
+     private Integer flag;
+
+
+    // Constructors
+
+    /** default constructor */
+    public Change() {
+    }
+
+    
+    /** full constructor */
+    public Change(Integer clientid, Float pay, Date date, String changetype, Integer flag) {
+        this.clientid = clientid;
+        this.pay = pay;
+        this.date = date;
+        this.changetype = changetype;
+        this.flag = flag;
+    }
+
+   
+    // Property accessors
+
+    public Integer getChangeid() {
+        return this.changeid;
+    }
+    
+    public void setChangeid(Integer changeid) {
+        this.changeid = changeid;
+    }
+
+    public Integer getClientid() {
+        return this.clientid;
+    }
+    
+    public void setClientid(Integer clientid) {
+        this.clientid = clientid;
+    }
+
+    public Float getPay() {
+        return this.pay;
+    }
+    
+    public void setPay(Float pay) {
+        this.pay = pay;
+    }
+
+    public Date getDate() {
+        return this.date;
+    }
+    
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getChangetype() {
+        return this.changetype;
+    }
+    
+    public void setChangetype(String changetype) {
+        this.changetype = changetype;
+    }
+
+    public Integer getFlag() {
+        return this.flag;
+    }
+    
+    public void setFlag(Integer flag) {
+        this.flag = flag;
+    }
+   
+
+
+
+
+
+
+
+
+}

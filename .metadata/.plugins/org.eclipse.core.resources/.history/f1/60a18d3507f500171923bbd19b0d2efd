@@ -1,0 +1,8 @@
+package cn.com.dao;
+
+import cn.com.biz.ManagestoreBiz;
+import cn.com.services.BaseDao;
+
+public class ManagestoreDao extends BaseDao implements ManagestoreBiz {
+
+}

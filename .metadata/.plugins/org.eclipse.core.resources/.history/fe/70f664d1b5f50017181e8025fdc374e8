@@ -1,0 +1,19 @@
+package cn.com.action;
+
+import javax.annotation.Resource;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.InquireBiz;
+
+public class InquireAction extends ActionSupport {
+	
+	@Resource(name="inquireDao")
+	private InquireBiz inquireBiz;
+	public String instore(){
+		String result="error";
+		
+		return result;
+	}
+
+}

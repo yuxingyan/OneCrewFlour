@@ -1,0 +1,8 @@
+package cn.com.dao;
+
+import cn.com.biz.CheckflourstoreBiz;
+import cn.com.services.BaseDao;
+
+public class CheckflourstoreDao extends BaseDao implements CheckflourstoreBiz {
+
+}

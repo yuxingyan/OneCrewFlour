@@ -1,0 +1,18 @@
+package cn.com.dao;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.CheckflourstoreBiz;
+import cn.com.pojo.Checkstore;
+import cn.com.services.BaseDao;
+@Repository("checkflourstoreDao")
+public class CheckflourstoreDao extends BaseDao implements CheckflourstoreBiz {
+	public void addcheckflouestore(Checkstore checkstore){
+		super.save(checkstore);
+		
+	}
+	public void updatecheckflouestore(Checkstore checkstore){
+		super.update(checkstore);
+	}
+
+}

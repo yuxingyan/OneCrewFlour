@@ -1,0 +1,30 @@
+package cn.com.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.BuyBiz;
+import cn.com.pojo.Client;
+import cn.com.pojo.Instore;
+import cn.com.services.BaseDao;
+@Repository("buyDao")
+public class BuyDao extends BaseDao implements BuyBiz {
+
+		public Instore addinstore(Instore instore){
+			
+			  int l=0;
+			  
+				 l=super.save(instore);
+				
+				if(l==1){
+					
+				return instore;
+					
+				}
+				else{
+				return instore;
+				}
+	
+
+}

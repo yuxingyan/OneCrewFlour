@@ -1,0 +1,6 @@
+package cn.com.biz;
+
+public interface ClientstoreBiz {
+	public  void addclientstore( int clientid,String type,Float weight);
+
+}

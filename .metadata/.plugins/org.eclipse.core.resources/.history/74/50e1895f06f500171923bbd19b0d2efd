@@ -1,0 +1,40 @@
+package cn.com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.ExchangeBiz;
+import cn.com.biz.ProductBiz;
+import cn.com.pojo.Product;
+@Controller("managestoreAction")
+public class ManagestoreAction extends ActionSupport {
+	@Resource(name="productDao")
+	private ProductBiz productBiz;
+	@Resource(name="exchangeDao")
+	private ExchangeBiz exchangeBiz;
+	public String init(){
+		String result="error";
+int count=exchangeBiz.findcount()+1;
+		
+		ServletActionContext.getRequest().getSession().setAttribute("count", count);
+		List<Product> list=productBiz.findAll();
+	    if(list!=null){
+			
+			ServletActionContext.getRequest().setAttribute("list", list);
+			
+			result="initsuccess";
+			
+		}else{
+			ServletActionContext.getRequest().setAttribute("erroeMsn", "error");
+			result="initerror";
+		}
+		return result;
+	}
+
+}

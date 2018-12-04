@@ -1,0 +1,14 @@
+package cn.com.dao;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.ClientstoreBiz;
+import cn.com.services.BaseDao;
+@Repository("clientstoreDao")
+public class ClientstoreDao extends BaseDao implements ClientstoreBiz {
+	
+	public  void addclientstore(){
+		
+	}
+
+}

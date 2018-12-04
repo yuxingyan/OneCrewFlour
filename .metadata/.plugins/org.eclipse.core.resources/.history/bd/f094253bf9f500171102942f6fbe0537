@@ -1,0 +1,47 @@
+package cn.com.action;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.ClientstoreBiz;
+import cn.com.biz.FlourstoreBiz;
+import cn.com.pojo.Checkstore;
+import cn.com.pojo.Clientstore;
+import cn.com.pojo.Flourstore;
+@Controller("checkflourstoreAction")
+public class CheckflourstoreAction extends ActionSupport {
+	@Resource(name="flourstoreDao")
+	private FlourstoreBiz flourstoreBiz;
+	@Resource(name="clientstoreDao")
+	private ClientstoreBiz clientstoreBiz;
+	public String init(){
+		String result="error";
+		List<Flourstore> flourstore=flourstoreBiz.findAll();
+		List<Clientstore> clientstore=clientstoreBiz.findAll();
+		List<Checkstore> store = new ArrayList();
+		if(flourstore!=null||clientstore!=null){
+			for(int i=0;i<flourstore.size();i++){
+				for(int j=0;j<clientstore.size();j++){
+					if(flourstore.get(i).getType().equals(clientstore.get(j).getType())){
+						
+					}
+					
+				}
+			}
+			
+			result="initsuccess";
+			
+		}
+		else{
+			result="initsuccess";
+		}
+		return result;
+	}
+
+}

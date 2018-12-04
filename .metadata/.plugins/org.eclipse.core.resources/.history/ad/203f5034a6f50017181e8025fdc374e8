@@ -1,0 +1,22 @@
+package cn.com.action;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.ChangeBiz;
+@Controller("changeAction")
+public class ChangeAction extends ActionSupport {
+	@Resource(name="changeDao")
+	private ChangeBiz changeBiz;
+	
+	public String init(){
+		String result="error";
+		
+		
+		return result;
+	}
+
+}

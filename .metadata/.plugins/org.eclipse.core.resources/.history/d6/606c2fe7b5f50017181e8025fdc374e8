@@ -1,0 +1,31 @@
+package cn.com.action;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.InquireBiz;
+
+public class InquireAction extends ActionSupport {
+	
+	@Resource(name="inquireDao")
+	private InquireBiz inquireBiz;
+	public String instore() throws ParseException{
+		String result="error";
+		String s1=ServletActionContext.getRequest().getParameter("startdate");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date date1 = format1.parse(s1);
+		String s2=ServletActionContext.getRequest().getParameter("enddate");
+		DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date date2 = format2.parse(s1);
+		return result;
+	}
+
+}

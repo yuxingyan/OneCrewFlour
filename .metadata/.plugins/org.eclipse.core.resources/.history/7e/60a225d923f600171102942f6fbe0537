@@ -1,0 +1,96 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'inquireclient.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!-- 
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script language="javascript" type="text/javascript">
+	
+         function closeWindow(){
+		
+		opener.document.getElementById("nametext").value=document.getElementById("clientname").value;
+		opener.document.getElementById("addresstext").value=document.getElementById("address").value;
+		opener.document.getElementById("idtext").innerHTML=document.getElementById("clientid").value;
+		
+		opener.document.getElementById("op").value=document.getElementById("clientid").value;
+		
+		window.close();
+		
+			//document.form1.action="rawfoodinstore";      
+			//window.returnValue = content.value; 
+        //document.form1.submit();    
+			
+		}
+		function cheack(){
+		var isProduce = document.getElementsByName("info_type");     
+          if(isProduce[0].checked)  {  
+         
+ 
+                      document.getElementById("check").value="id";
+                      }
+                      else{
+                      
+                       document.getElementById("check").value="name";
+                     }
+                    
+                   
+                   if(document.getElementById("input").value==""){
+                   document.getElementById("check").value="all"}
+                   
+                    document.form1.submit();
+		}
+	
+		</script>
+  </head>
+  
+  <body>
+  <form id="form1" name="form1"action="otherinquireclient">
+    <table border="1">
+    
+     <input type="hidden"value=""id="check"name="check"/>
+	<tr align="center">
+		<td align="center" colspan="3">客户查询</td>
+	</tr>
+	<tr >
+		<td><input id="number" type="radio" checked="checked" name="info_type" value="0" />客户编号：</td>
+		<td><input id="name" type="radio"  name="info_type" value="1"/>客户名称：</td>
+		<td><input type="text" id="input" name="input" /></td>
+	</tr>
+ 
+	<tr>
+		<td colspan="3" align="center"><td > <input type="button" onclick="cheack();"/>  </td>
+	</tr>
+	
+	<tr>
+		<td colspan="3" align="center">选择</td>
+	</tr>
+	
+	<s:iterator value="#session.list" var="l">
+	<tr onclick="closeWindow();">
+		<td colspan="3"><input type="text" id="clientid" value="<s:property value="#l.clientid" />"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="clientname" value="<s:property value="#l.clientname" />"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="address" value="<s:property value="#l.address" />"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="address" value="<s:property value="#l.idcard" />"/></td>
+	
+	</tr>
+		</s:iterator>
+		
+
+
+</table>
+</form>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+package cn.com.action;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.BuyBiz;
+import cn.com.biz.ExchangeBiz;
+import cn.com.pojo.Buy;
+@Controller("buyAction")
+
+public class BuyAction extends ActionSupport {
+	@Resource(name="buy")
+	private Buy buy;
+	@Resource(name="buyDao")
+	private BuyBiz buyBiz;
+	@Resource(name="exchangeDao")
+	private ExchangeBiz exchangeBiz;
+	public String init(){
+		String result="error";
+		int count=exchangeBiz.findcount()+1;
+		
+		ServletActionContext.getRequest().getSession().setAttribute("count", count);
+		result="initsuccess";
+		
+		
+		return result;
+		
+	}
+	public String addbuy(){
+		String result="error";
+		buy.setType("Ð¡Âó");
+		System.out.println(buy.getPrice());
+		
+		buyBiz.addbuy(buy);
+		return result;
+		
+	}
+	public Buy getBuy() {
+		return buy;
+	}
+	public void setBuy(Buy buy) {
+		this.buy = buy;
+	}
+
+}

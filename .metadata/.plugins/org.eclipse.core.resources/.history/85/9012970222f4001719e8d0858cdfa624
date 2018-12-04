@@ -1,0 +1,13 @@
+package cn.com.dao;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.FlourstoreBiz;
+import cn.com.services.BaseDao;
+@Repository("FloutstoreDao")
+public class FloutstoreDao extends BaseDao implements FlourstoreBiz {
+	public void addflourstore(){
+		
+	}
+
+}

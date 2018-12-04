@@ -1,0 +1,6 @@
+package cn.com.biz;
+
+public interface FlourprocessBiz {
+	public void addflourprocess(Process process,int userid,Float rawweight,String type);
+
+}

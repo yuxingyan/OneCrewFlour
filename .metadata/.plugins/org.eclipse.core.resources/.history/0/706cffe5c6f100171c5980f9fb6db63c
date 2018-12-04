@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="user" catalog="flourmill" class="cn.com.pojo.User">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="product" catalog="flourmill"
+		class="cn.com.pojo.Product">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="client" catalog="flourmill"
+		class="cn.com.pojo.Client">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+
+	
+	<table name="repay" catalog="flourmill" class="cn.com.pojo.Repay">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="buy" catalog="flourmill" class="cn.com.pojo.Buy">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="clientstore" catalog="flourmill"
+		class="cn.com.pojo.Clientstore">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="exchange" catalog="flourmill"
+		class="cn.com.pojo.Exchange">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="flourstore" catalog="flourmill"
+		class="cn.com.pojo.Flourstore">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="managestore" catalog="flourmill"
+		class="cn.com.pojo.Managestore">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="payout" catalog="flourmill"
+		class="cn.com.pojo.Payout">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="process" catalog="flourmill"
+		class="cn.com.pojo.Process">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="sale" catalog="flourmill" class="cn.com.pojo.Sale">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+<table name="useflour" catalog="flourmill"
+	class="cn.com.pojo.Useflour">
+	<primary-key>
+		<generator class="native"></generator>
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>

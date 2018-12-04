@@ -1,0 +1,8 @@
+package cn.com.dao;
+
+import cn.com.biz.InquireBiz;
+import cn.com.services.BaseDao;
+
+public class InquireDao extends BaseDao implements InquireBiz {
+
+}

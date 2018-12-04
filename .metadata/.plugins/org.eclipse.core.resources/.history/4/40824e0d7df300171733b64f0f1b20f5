@@ -1,0 +1,11 @@
+package cn.com.biz;
+
+import java.util.Date;
+
+import cn.com.pojo.Exchange;
+
+public interface ExchangeBiz {
+	public int findcount();
+	public Exchange addexchange(int eid,String exchangetype,int clientid,Date date,Float pay,Boolean deficit,Float realpay,int userid );
+
+}

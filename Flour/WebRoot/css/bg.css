@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+ #body{
+ 
+background-image:url(../images/login_01.jpg);
+
+ }
+ #font{
+ 
+ font-size:25px;
+ 
+ 
+ }
+ .tree{width:200px;border:1px inset #fff;height:100%;padding:5px;overflow:auto;}
+.tree dd,.tree dt, .tree dl{margin:0;padding:0;overflow:hidden;}
+.tree dd{margin-left:18px;}
+.tree dt{background:url(http://www.srcfans.com/jscode/img/201111/tree-bg.png) no-repeat 0 0px;padding-left:35px;line-height :20px;height:20px;}
+.tree dt.node-close{background-position: 0 -24px;}
+.tree dt.node-open{background-position: 0 -58px;}
+.tree dt a{color:#000;text-decoration:none;font: 12px/1 verdana;line-height :12px;_line-height :16px;}
+.tree dt a:hover{background:#0A246A;color:#fff;}
+#gb{
+	
+	margin-top:-780;padding:210;
+	
+	
+	
+	
+}
+
+#buttonbg{
+   
+	position:absolute;
+	width:55;
+	height:55;
+	background-image:url(../images/login_submit.jpg);
+	background-repeat:no-repeat;
+     margin-top:-60px;
+     margin-left:280px;
+   
+	
+}
+#long{
+	position:relative;
+
+	margin:200px auto; width:400px;
+	height:200px;
+	background-repeat:no-repeat;
+     
+	
+}
+#main{
+	
+	
+	height:570;
+}

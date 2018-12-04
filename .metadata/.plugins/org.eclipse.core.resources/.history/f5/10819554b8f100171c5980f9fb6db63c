@@ -1,0 +1,93 @@
+package cn.com.pojo;
+
+
+
+/**
+ * Repay entity. @author MyEclipse Persistence Tools
+ */
+
+public class Repay  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Integer clientid;
+     private String clientname;
+     private String address;
+     private String idcard;
+     private String paytake;
+
+
+    // Constructors
+
+    /** default constructor */
+    public Repay() {
+    }
+
+	/** minimal constructor */
+    public Repay(String clientname, String address, String idcard) {
+        this.clientname = clientname;
+        this.address = address;
+        this.idcard = idcard;
+    }
+    
+    /** full constructor */
+    public Repay(String clientname, String address, String idcard, String paytake) {
+        this.clientname = clientname;
+        this.address = address;
+        this.idcard = idcard;
+        this.paytake = paytake;
+    }
+
+   
+    // Property accessors
+
+    public Integer getClientid() {
+        return this.clientid;
+    }
+    
+    public void setClientid(Integer clientid) {
+        this.clientid = clientid;
+    }
+
+    public String getClientname() {
+        return this.clientname;
+    }
+    
+    public void setClientname(String clientname) {
+        this.clientname = clientname;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getIdcard() {
+        return this.idcard;
+    }
+    
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
+    }
+
+    public String getPaytake() {
+        return this.paytake;
+    }
+    
+    public void setPaytake(String paytake) {
+        this.paytake = paytake;
+    }
+   
+
+
+
+
+
+
+
+
+}

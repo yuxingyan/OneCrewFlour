@@ -1,0 +1,88 @@
+package cn.com.pojo;
+
+import java.util.Date;
+
+
+/**
+ * Payout entity. @author MyEclipse Persistence Tools
+ */
+
+public class Payout  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Integer poid;
+     private String write;
+     private Integer flag;
+     private Float sum;
+     private Date date;
+
+
+    // Constructors
+
+    /** default constructor */
+    public Payout() {
+    }
+
+    
+    /** full constructor */
+    public Payout(String write, Integer flag, Float sum, Date date) {
+        this.write = write;
+        this.flag = flag;
+        this.sum = sum;
+        this.date = date;
+    }
+
+   
+    // Property accessors
+
+    public Integer getPoid() {
+        return this.poid;
+    }
+    
+    public void setPoid(Integer poid) {
+        this.poid = poid;
+    }
+
+    public String getWrite() {
+        return this.write;
+    }
+    
+    public void setWrite(String write) {
+        this.write = write;
+    }
+
+    public Integer getFlag() {
+        return this.flag;
+    }
+    
+    public void setFlag(Integer flag) {
+        this.flag = flag;
+    }
+
+    public Float getSum() {
+        return this.sum;
+    }
+    
+    public void setSum(Float sum) {
+        this.sum = sum;
+    }
+
+    public Date getDate() {
+        return this.date;
+    }
+    
+    public void setDate(Date date) {
+        this.date = date;
+    }
+   
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,8 @@
+package cn.com.dao;
+
+import cn.com.biz.FlourstoreBiz;
+import cn.com.services.BaseDao;
+
+public class FloutstoreDao extends BaseDao implements FlourstoreBiz {
+
+}

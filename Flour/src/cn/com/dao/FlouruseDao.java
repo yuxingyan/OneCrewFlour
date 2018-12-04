@@ -1,0 +1,15 @@
+package cn.com.dao;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.FlouruseBiz;
+import cn.com.pojo.Useflour;
+import cn.com.services.BaseDao;
+@Repository("flouruseDao")
+public class FlouruseDao extends BaseDao implements FlouruseBiz {
+	public void addflouruse(Useflour useflour){
+		super.save(useflour);
+	
+	}
+
+}

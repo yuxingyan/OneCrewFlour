@@ -1,0 +1,99 @@
+package cn.com.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.ClientBiz;
+import cn.com.biz.ExchangeBiz;
+import cn.com.pojo.Client;
+import cn.com.pojo.Product;
+import cn.com.services.BaseDao;
+@Repository("clientDao")
+public class ClientDao extends BaseDao implements  ClientBiz {
+
+	@Override
+	public Client addclient(Client client) {
+		  int l=0;
+		  int flag=0;
+		  System.out.println("1"+l);
+	        List<Client> list=this.findAll();
+	        for(int i=0;i<list.size();i++){
+	        	
+	        	if(client.getClientname().equals(list.get(i).getClientname())){
+	        	
+	        		flag=1;
+	        		break;
+	        	}
+	        }
+	        if(flag==0){
+			 l=super.save(client);
+	        }
+			 
+			 
+			if(l==1){
+				System.out.println(l);
+				
+			return client;
+				
+			}
+			else{
+				System.out.println(l);
+			return null;
+			}
+	}
+
+	@Override
+	public List<Client> findAll() {
+		String hql = "from Client";
+		List list = super.find(hql);
+		if (list !=null && list.size()>0) {
+			return list;
+		} else {
+			return null;
+		}
+		
+	}
+
+	@Override
+	public Client findById(int clientid) {
+		String hql = "from Client c where c.clientid = "+clientid+"";
+		List list = super.find(hql);
+		if (list !=null && list.size()>0) {
+			return (Client) list.get(0);
+		} else {
+			return null;
+		}
+	}
+	public Client findByName(String clientname) {
+		String hql = "from Client c where c.clientname like '%"+clientname+"%'";
+		List list = super.find(hql);
+		if (list !=null && list.size()>0) {
+			return (Client) list.get(0);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public String deleteclient(int clientid) {
+		int d=super.delete(this.findById(clientid));
+		return "success";
+	}
+
+	@Override
+	public void update(int clientid, String clientname, String address, String idcard, String phone, String homephone) {
+		Client client=this.findById(clientid);
+		client.setClientname(clientname);
+		client.setAddress(address);
+		client.setIdcard(idcard);
+		client.setPhone(homephone);
+		client.setHomephone(homephone);
+		this.update(client);
+		
+
+	}
+
+
+
+}

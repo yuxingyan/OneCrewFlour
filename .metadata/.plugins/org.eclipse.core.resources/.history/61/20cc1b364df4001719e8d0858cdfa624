@@ -1,0 +1,6 @@
+package cn.com.biz;
+
+public interface FlourprocessBiz {
+	
+
+}

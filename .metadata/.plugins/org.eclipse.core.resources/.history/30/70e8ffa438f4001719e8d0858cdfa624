@@ -1,0 +1,82 @@
+package cn.com.action;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.BuyBiz;
+import cn.com.biz.ClientstoreBiz;
+import cn.com.biz.ExchangeBiz;
+import cn.com.pojo.Buy;
+import cn.com.pojo.Clientstore;
+import cn.com.pojo.Exchange;
+@Controller("buyAction")
+
+public class BuyAction extends ActionSupport {
+	@Resource(name="buy")
+	private Buy buy;
+	@Resource(name="buyDao")
+	private BuyBiz buyBiz;
+	@Resource(name="exchangeDao")
+	private ExchangeBiz exchangeBiz;
+	@Resource(name="clientstoreDao")
+	private ClientstoreBiz clientstoreBiz;
+	public String init(){
+		String result="error";
+		int count=exchangeBiz.findcount()+1;
+		
+		ServletActionContext.getRequest().getSession().setAttribute("count", count);
+		result="initsuccess";
+		
+		
+		return result;
+		
+	}
+	public String addbuy() throws ParseException{
+		String result="error";
+		String s2=ServletActionContext.getRequest().getParameter("buy.date");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date date = format1.parse(s2);
+		Float pay=(float) 1.11;
+		Float realpay=(float) 1.11;
+		  String s1=ServletActionContext.getRequest().getParameter("clientid");
+	        int clientid=Integer.parseInt(s1);
+	        int userid=1;
+	      buy.setDate(date);
+	    	buy.setType("–°¬Û");
+		 Clientstore clientstore= clientstoreBiz.findByIdType(clientid, buy.getType());
+	       if(clientstore.getWeight()>buy.getWeight()){
+		      buyBiz.addbuy(buy);
+		  	Exchange exchange2=exchangeBiz.addexchange(buy.getEid(), "π∫÷√‘≠¡∏", clientid, buy.getDate(), pay, true, realpay, userid);
+		      clientstoreBiz.updateclientstore(clientid, buy.getType(), clientstore.getWeight()-buy.getWeight());
+		      
+		      result="addbuysuccess";
+	       }else{
+	    	   result="addbuyerror";
+	       }
+      
+      
+       
+		
+		
+		
+		
+		return result;
+		
+	}
+	public Buy getBuy() {
+		return buy;
+	}
+	public void setBuy(Buy buy) {
+		this.buy = buy;
+	}
+
+}

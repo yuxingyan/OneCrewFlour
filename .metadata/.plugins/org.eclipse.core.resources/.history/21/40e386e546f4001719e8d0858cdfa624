@@ -1,0 +1,51 @@
+package cn.com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.ExchangeBiz;
+import cn.com.biz.ProductBiz;
+import cn.com.pojo.Product;
+@Controller("flourprocessAction")
+public class FlourprocessAction extends ActionSupport {
+	@Resource(name="product")
+	private Product product;
+	@Resource(name="productDao")
+	private ProductBiz productBiz;
+	@Resource(name="exchangeDao")
+	private ExchangeBiz exchangeBiz;
+	public String addflourprocess(){
+		String result="error";
+		List<Product> list=productBiz.findAll();
+	    if(list!=null){
+			
+			ServletActionContext.getRequest().setAttribute("list", list);
+			
+			result="success";
+			
+		}else{
+			ServletActionContext.getRequest().setAttribute("erroeMsn", "error");
+			result="error";
+		}
+		return result;
+		
+	}
+	public String init(){
+		String result="error";
+		int count=exchangeBiz.findcount()+1;
+		
+		ServletActionContext.getRequest().getSession().setAttribute("count", count);
+		result="initsuccess";
+		
+		
+		return result;
+		
+	}
+
+}

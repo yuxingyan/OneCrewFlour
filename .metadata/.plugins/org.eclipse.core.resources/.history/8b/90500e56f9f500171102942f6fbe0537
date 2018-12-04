@@ -1,0 +1,72 @@
+package cn.com.action;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.ClientstoreBiz;
+import cn.com.biz.FlourstoreBiz;
+import cn.com.pojo.Checkstore;
+import cn.com.pojo.Clientstore;
+import cn.com.pojo.Flourstore;
+@Controller("checkflourstoreAction")
+public class CheckflourstoreAction extends ActionSupport {
+	@Resource(name="flourstoreDao")
+	private FlourstoreBiz flourstoreBiz;
+	@Resource(name="clientstoreDao")
+	private ClientstoreBiz clientstoreBiz;
+	public String init(){
+		String result="error";
+		List<Flourstore> flourstore=flourstoreBiz.findAll();
+		List<Clientstore> clientstore=clientstoreBiz.findAll();
+		List<Checkstore> store = new ArrayList();
+		Checkstore cstore=new Checkstore();
+		int f=0;
+		Float s=(float) 0;
+		if(flourstore!=null||clientstore!=null){
+			for(int i=0;i<flourstore.size();i++){
+				for(int j=0;j<clientstore.size();j++){
+					if(flourstore.get(i).getType().equals(clientstore.get(j).getType())){
+						f++;
+						cstore.setId(f);
+						cstore.setClientstore(clientstore.get(j).getWeight());
+						cstore.setSumstore(flourstore.get(i).getMillweight()+clientstore.get(j).getWeight());
+						cstore.setType(flourstore.get(i).getType());
+						store.add(cstore);
+						
+					}else{
+					
+						f++;
+						cstore.setId(f);
+						cstore.setClientstore(clientstore.get(j).getWeight());
+						cstore.setType(clientstore.get(j).getType());
+						cstore.setSumstore(clientstore.get(j).getWeight());
+						store.add(cstore);
+						f++;
+						cstore.setId(f);
+						cstore.setClientstore(s);
+						cstore.setType(flourstore.get(i).getType());
+						cstore.setSumstore(clientstore.get(j).getWeight());
+						store.add(cstore);
+						
+					}
+					
+				}
+				 
+			}
+			
+			result="initsuccess";
+			
+		}
+		else{
+			result="initsuccess";
+		}
+		return result;
+	}
+
+}

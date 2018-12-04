@@ -1,0 +1,106 @@
+package cn.com.action;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.CheckflourstoreBiz;
+import cn.com.biz.ClientstoreBiz;
+import cn.com.biz.ExchangeBiz;
+import cn.com.biz.InstoreBiz;
+import cn.com.pojo.Checkstore;
+import cn.com.pojo.Clientstore;
+import cn.com.pojo.Exchange;
+import cn.com.pojo.Instore;
+@Controller("instoreAction")
+public class InstoreAction extends ActionSupport {
+	@Resource(name="checkflourstoreDao")
+	private CheckflourstoreBiz checkflourstoreBiz;
+	@Resource(name="clientstoreDao")
+	private ClientstoreBiz clientstoreBiz;
+	@Resource(name="instore")
+	private Instore instore;
+	@Resource(name="instoreDao")
+	private InstoreBiz instoreBiz;
+	@Resource(name="exchangeDao")
+	private ExchangeBiz exchangeBiz;
+	public String addinstore() throws ParseException{
+		Float pay=(float) 1.11;
+		Float realpay=(float) 1.11;
+		String result="error";
+
+		String s0=ServletActionContext.getRequest().getParameter("instore.eid");
+	
+		int eid=Integer.parseInt(s0);
+		
+		String s1=ServletActionContext.getRequest().getParameter("instore.weight");
+		double weight=Double.valueOf(s1).doubleValue(); 
+		Float weight2=Float.valueOf(s1).floatValue();
+		String s2=ServletActionContext.getRequest().getParameter("instore.date");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date date = format1.parse(s2);
+		String s3=ServletActionContext.getRequest().getParameter("bian");
+		
+	    int clientid=Integer.parseInt(s3);
+	    int userid=1;
+		//!!!!
+	    instore.setDate(date);
+	    instore.setClientid(clientid);
+		instore.setEid(eid);
+		instore.setWeight(weight);
+		instore.setType("小麦");
+        
+		Instore instore2=instoreBiz.addinstore(instore);
+		
+		Checkstore checkstore=checkflourstoreBiz.findByName("小麦");
+		
+		if(checkstore.getSumstore()==null){
+			checkstore.setClientstore(weight2);
+			checkstore.setSumstore(weight2);
+			checkstore.setType("小麦");
+			
+			checkflourstoreBiz.addcheckflouestore(checkstore);
+			
+		    
+		}
+		else{
+			checkstore.setClientstore(checkstore.getClientstore()+weight2);
+			checkstore.setSumstore(checkstore.getSumstore()+weight2);
+			checkflourstoreBiz.updatecheckflouestore(checkstore);
+		}
+		
+		Exchange exchange2=exchangeBiz.addexchange(eid, "原粮入库", instore.getClientid(), instore.getDate(), pay, true, realpay, userid);
+		Clientstore clientstore2=clientstoreBiz.findByIdType(instore.getClientid(), instore.getType());
+		
+		if(clientstore2.getWeight()!=null){
+			clientstoreBiz.updateclientstore(clientid, instore.getType(), clientstore2.getWeight()+weight2);
+		}
+		else{
+		clientstoreBiz.addclientstore(instore.getClientid(), instore.getType(), weight2);
+		}
+		
+		
+		result="addinstoresuccess";
+		return result;
+	}
+	public String init(){
+		String result="error";
+		int count=exchangeBiz.findcount();
+		
+		ServletActionContext.getRequest().setAttribute("count", count);
+		result="initsuccess";
+		
+		
+		return result;
+		
+	}
+
+}

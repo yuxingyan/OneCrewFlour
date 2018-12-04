@@ -1,0 +1,77 @@
+package cn.com.pojo;
+
+
+
+/**
+ * Flourstore entity. @author MyEclipse Persistence Tools
+ */
+
+public class Flourstore  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Integer id;
+     private Integer typeid;
+     private Float millweight;
+     private Float clientweight;
+
+
+    // Constructors
+
+    /** default constructor */
+    public Flourstore() {
+    }
+
+    
+    /** full constructor */
+    public Flourstore(Integer typeid, Float millweight, Float clientweight) {
+        this.typeid = typeid;
+        this.millweight = millweight;
+        this.clientweight = clientweight;
+    }
+
+   
+    // Property accessors
+
+    public Integer getId() {
+        return this.id;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getTypeid() {
+        return this.typeid;
+    }
+    
+    public void setTypeid(Integer typeid) {
+        this.typeid = typeid;
+    }
+
+    public Float getMillweight() {
+        return this.millweight;
+    }
+    
+    public void setMillweight(Float millweight) {
+        this.millweight = millweight;
+    }
+
+    public Float getClientweight() {
+        return this.clientweight;
+    }
+    
+    public void setClientweight(Float clientweight) {
+        this.clientweight = clientweight;
+    }
+   
+
+
+
+
+
+
+
+
+}

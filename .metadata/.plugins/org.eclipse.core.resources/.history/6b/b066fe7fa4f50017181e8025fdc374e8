@@ -1,0 +1,145 @@
+package cn.com.action;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.ChangeBiz;
+import cn.com.biz.ClientstoreBiz;
+import cn.com.biz.ExchangeBiz;
+import cn.com.biz.FlourstoreBiz;
+import cn.com.biz.ManagestoreBiz;
+import cn.com.biz.ProductBiz;
+import cn.com.pojo.Change;
+import cn.com.pojo.Clientstore;
+import cn.com.pojo.Flourstore;
+import cn.com.pojo.Managestore;
+import cn.com.pojo.Product;
+@Controller("managestoreAction")
+public class ManagestoreAction extends ActionSupport {
+	@Resource(name="changeDao")
+	private ChangeBiz changeBiz;
+	@Resource(name="managestoreDao")
+	private ManagestoreBiz managestoreBiz;
+	@Resource(name="flourstoreDao")
+	private FlourstoreBiz flourstoreBiz;
+	@Resource(name="productDao")
+	private ProductBiz productBiz;
+	@Resource(name="exchangeDao")
+	private ExchangeBiz exchangeBiz;
+	@Resource(name="clientstoreDao")
+	private ClientstoreBiz clientstoreBiz;
+	@Resource(name="managestore")
+	private Managestore managestore;
+	public Managestore getManagestore() {
+		return managestore;
+	}
+	public void setManagestore(Managestore managestore) {
+		this.managestore = managestore;
+	}
+	public String init(){
+		String result="error";
+        int count=exchangeBiz.findcount()+1;
+		
+		ServletActionContext.getRequest().getSession().setAttribute("count", count);
+		List<Product> list=productBiz.findAll();
+	    if(list!=null){
+			
+			ServletActionContext.getRequest().setAttribute("list", list);
+			
+			result="initsuccess";
+			
+		}else{
+			ServletActionContext.getRequest().setAttribute("erroeMsn", "error");
+			result="initerror";
+		}
+		return result;
+	}
+	public String addmanagestore() throws ParseException{
+		String result="error";
+        String s0=ServletActionContext.getRequest().getParameter("bian");
+        Change change=new Change();
+		
+		Float s=(float) 0;
+		int clientid=Integer.parseInt(s0);
+		String s1=ServletActionContext.getRequest().getParameter("managestore.date");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date date = format1.parse(s1);
+		managestore.setDate(date);
+		Clientstore clientstore=clientstoreBiz.findByIdType(clientid, "小麦");
+		Flourstore flourstore=flourstoreBiz.findByType("小麦");
+		managestore.setType("小麦");
+		managestore.setMethod("出库");
+		managestore.setClientid(clientid);
+		  String s2=ServletActionContext.getRequest().getParameter("pay");
+			
+			Float pay=Float.valueOf(s2).floatValue();
+			String s3=ServletActionContext.getRequest().getParameter("realpay");
+				
+			Float realpay=Float.valueOf(s3).floatValue();
+			s=realpay-pay;
+			change.setClientid(clientid);
+			change.setPay(s);
+			Change change2=changeBiz.findById(clientid);
+		if(clientstore!=null){
+			if(managestore.getMethod().equals("出库")){
+			if(managestore.getWeight()<clientstore.getWeight()){
+				clientstoreBiz.updateclientstore(clientid, "小麦", clientstore.getWeight()-managestore.getWeight());
+				if(change2!=null){
+					changeBiz.update(change2.getPay()+s, clientid);
+					}
+					else{
+						changeBiz.addchange(change);
+					}
+				managestoreBiz.addmanagestore(managestore);
+				if(flourstore!=null){
+					flourstoreBiz.updateflourstore("小麦", flourstore.getMillweight()+managestore.getWeight());
+				}
+				else{
+					flourstoreBiz.addflourstore("小麦", managestore.getWeight());
+				}
+				result="addmanagestoresuccess";
+			}else{
+				result="addmanagestoreerror";
+			}
+			}else{
+				if(flourstore!=null){
+					if(managestore.getWeight()<flourstore.getMillweight()){
+						if(change2!=null){
+							changeBiz.update(change2.getPay()+s, clientid);
+							}
+							else{
+								changeBiz.addchange(change);
+							}
+						managestoreBiz.addmanagestore(managestore);
+						flourstoreBiz.updateflourstore("小麦", flourstore.getMillweight()-managestore.getWeight());
+						if(clientstore!=null){
+							clientstoreBiz.updateclientstore(clientid, "小麦", clientstore.getWeight()+managestore.getWeight());
+						}
+						else{
+							clientstoreBiz.addclientstore(clientid, "小麦", managestore.getWeight());
+						}
+						result="addmanagestoresuccess";
+					}else{
+						result="addmanagestoreerror";
+					}
+				}else{
+					result="addmanagestoreerror";
+				}
+			}
+		}
+		
+		
+		return result;
+	}
+
+}

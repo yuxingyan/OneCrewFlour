@@ -1,0 +1,104 @@
+package cn.com.pojo;
+
+/**
+ * Managestore entity. @author MyEclipse Persistence Tools
+ */
+
+public class Managestore implements java.io.Serializable {
+
+	// Fields
+
+	private Integer mid;
+	private Product product;
+	private Integer eid;
+	private Float weight;
+	private Integer method;
+	private Float price;
+	private Double sum;
+	private Integer clientid;
+
+	// Constructors
+
+	/** default constructor */
+	public Managestore() {
+	}
+
+	/** full constructor */
+	public Managestore(Product product, Integer eid, Float weight, Integer method, Float price, Double sum,
+			Integer clientid) {
+		this.product = product;
+		this.eid = eid;
+		this.weight = weight;
+		this.method = method;
+		this.price = price;
+		this.sum = sum;
+		this.clientid = clientid;
+	}
+
+	// Property accessors
+
+	public Integer getMid() {
+		return this.mid;
+	}
+
+	public void setMid(Integer mid) {
+		this.mid = mid;
+	}
+
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Integer getEid() {
+		return this.eid;
+	}
+
+	public void setEid(Integer eid) {
+		this.eid = eid;
+	}
+
+	public Float getWeight() {
+		return this.weight;
+	}
+
+	public void setWeight(Float weight) {
+		this.weight = weight;
+	}
+
+	public Integer getMethod() {
+		return this.method;
+	}
+
+	public void setMethod(Integer method) {
+		this.method = method;
+	}
+
+	public Float getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+
+	public Double getSum() {
+		return this.sum;
+	}
+
+	public void setSum(Double sum) {
+		this.sum = sum;
+	}
+
+	public Integer getClientid() {
+		return this.clientid;
+	}
+
+	public void setClientid(Integer clientid) {
+		this.clientid = clientid;
+	}
+
+}

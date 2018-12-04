@@ -1,0 +1,74 @@
+package cn.com.pojo;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.stereotype.Component;
+
+/**
+ * Product entity. @author MyEclipse Persistence Tools
+ */
+@Component("product")
+public class Product implements java.io.Serializable {
+
+	// Fields
+
+	private Integer typeid;
+	private String typename;
+	private String note;
+	private Set managestores = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Product() {
+	}
+
+	/** minimal constructor */
+	public Product(String typename, String note) {
+		this.typename = typename;
+		this.note = note;
+	}
+
+	/** full constructor */
+	public Product(String typename, String note, Set managestores) {
+		this.typename = typename;
+		this.note = note;
+		this.managestores = managestores;
+	}
+
+	// Property accessors
+
+	public Integer getTypeid() {
+		return this.typeid;
+	}
+
+	public void setTypeid(Integer typeid) {
+		this.typeid = typeid;
+	}
+
+	public String getTypename() {
+		return this.typename;
+	}
+
+	public void setTypename(String typename) {
+		this.typename = typename;
+	}
+
+	public String getNote() {
+		return this.note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public Set getManagestores() {
+		return this.managestores;
+	}
+
+	public void setManagestores(Set managestores) {
+		this.managestores = managestores;
+	}
+
+}

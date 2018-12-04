@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.objectFactory" value="spring"></constant>
+<package name="user" extends="struts-default" namespace="/">
+<action name="login" class="userAction" method="login">
+<result name="success">index.jsp</result>
+<result name="error">login.jsp</result>
+</action>
+
+<action name="adduser" class="userAction" method="adduser">
+<result name="addsuccess">usermanage.jsp</result>
+<result name="adderror">adduser.jsp</result>
+</action>
+
+<action name="deleteuser" class="userAction" method="deleteuser">
+<result name="deletesuccess">usermanage.jsp</result>
+<result name="deleteerror">usermanage.jsp</result>
+</action>
+
+<action name="passmodify" class="userAction" method="passmodify">
+<result name="passsuccess">modifyuser.jsp</result>
+<result name="passerror">usermanage.jsp</result>
+</action>
+
+<action name="modifyuser" class="userAction" method="modifyuser">
+<result name="modifysuccess">usermanage.jsp</result>
+<result name="modifyerror">modifyuser.jsp</result>
+</action>
+</package>
+
+
+<package name="product" extends="struts-default" namespace="/">
+<action name="productlogin" class="productAction" method="login">
+<result name="success">productmanage.jsp</result>
+<result name="error">index.jsp</result>
+</action>
+<action name="addproduct" class="productAction" method="addproduct">
+<result name="addsuccess">productmanage.jsp</result>
+<result name="adderror">addproduct.jsp</result>
+</action>
+<action name="deleteproduct" class="productAction" method="deleteproduct">
+<result name="deleteproductsuccess">productmanage.jsp</result>
+<result name="deleteproducterror">productmanage.jsp</result>
+</action>
+<action name="passmodifyproduct" class="productAction" method="passmodifyproduct">
+<result name="passproductsuccess">modifyproduct.jsp</result>
+<result name="passproducterror">productmanage.jsp</result>
+</action>
+<action name="modifyproduct" class="productAction" method="modifyproduct">
+<result name="modifyproductsuccess">productmanage.jsp</result>
+
+</action>
+</package>
+
+
+<package name="client" extends="struts-default" namespace="/">
+<action name="clientlogin" class="clientAction" method="login">
+<result name="success">clientmanage.jsp</result>
+<result name="error">index.jsp</result>
+</action>
+<action name="addclient" class="clientAction" method="addclient">
+<result name="addsuccess">clientmanage.jsp</result>
+<result name="adderror">addclient.jsp</result>
+</action>
+<action name="inquireclient" class="clientAction" method="inquireclient">
+<result name="inquiresuccess">inquireclient.jsp</result>
+<result name="inquireerror">rawfoodinstore.jsp</result>
+</action>
+
+
+<action name="deleteclient" class="clientAction" method="deleteclient">
+<result name="deleteclientsuccess">clientmanage.jsp</result>
+<result name="deleteclienterror">clientmanage.jsp</result>
+</action>
+<action name="passmodifyclient" class="clientAction" method="passmodifyclient">
+<result name="passclientsuccess">modifyclient.jsp</result>
+<result name="passclienterror">clientmanage.jsp</result>
+</action>
+<action name="modifyclient" class="clientAction" method="modifyclient">
+<result name="modifyclientsuccess">clientmanage.jsp</result>
+</action>
+</package>
+
+<package name="instore" extends="struts-default" namespace="/">
+<action name="addinstore" class="instoreAction" method="addinstore">
+<result name="addinstoresuccess">rawfoodinstore.jsp</result>
+<result name="addinstoreerror">rawfoodinstore.jsp</result>
+</action>
+
+<action name="rawfoodinstore" class="instoreAction" method="init">
+<result name="initsuccess">rawfoodinstore.jsp</result>
+
+</action>
+
+
+</package> 
+
+<package name="rawfoodbuy" extends="struts-default" namespace="/">
+
+<action name="buy" class="buyAction" method="init">
+<result name="initsuccess">buy.jsp</result> 
+</action>
+
+<action name="addbuy" class="buyAction" method="addbuy">
+<result name="addbuysuccess">buy.jsp</result> 
+<result name="addbuyerror">buy.jsp</result> 
+</action>
+</package>
+
+<package name="flourprocess" extends="struts-default" namespace="/">
+<action name="flourprocess" class="flourprocessAction" method="init">
+<result name="initsuccess">buy.jsp</result> 
+</action>
+</package>
+
+
+
+</struts>    

@@ -1,0 +1,10 @@
+package cn.com.dao;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.CheckflourstoreBiz;
+import cn.com.services.BaseDao;
+@Repository("checkflourstoreDao")
+public class CheckflourstoreDao extends BaseDao implements CheckflourstoreBiz {
+
+}

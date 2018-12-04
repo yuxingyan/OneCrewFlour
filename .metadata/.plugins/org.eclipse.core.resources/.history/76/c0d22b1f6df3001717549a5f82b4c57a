@@ -1,0 +1,48 @@
+package cn.com.dao;
+
+import java.util.List;
+
+import cn.com.biz.ClientBiz;
+import cn.com.biz.ExchangeBiz;
+import cn.com.pojo.Client;
+import cn.com.services.BaseDao;
+
+public class ClientDao extends BaseDao implements  ClientBiz {
+
+	@Override
+	public Client addclient(Client product) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Client> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Client findById(int clientid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteclient(int clientid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(int clientid, String clientname, String address, String idcard, String phone, String homephone) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public int findcount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

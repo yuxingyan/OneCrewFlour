@@ -1,0 +1,32 @@
+package cn.com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.FlourstoreBiz;
+import cn.com.pojo.Flourstore;
+@Controller("checkflourstoreAction")
+public class CheckflourstoreAction extends ActionSupport {
+	@Resource(name="flourstoreDao")
+	private FlourstoreBiz flourstoreBiz;
+	public String init(){
+		String result="error";
+		List<Flourstore> flourstore=flourstoreBiz.findAll();
+		if(flourstore!=null){
+			ServletActionContext.getRequest().getSession().setAttribute("list", flourstore);
+			result="initsuccess";
+			
+		}
+		else{
+			result="initsuccess";
+		}
+		return result;
+	}
+
+}

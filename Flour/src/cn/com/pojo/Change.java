@@ -1,0 +1,146 @@
+package cn.com.pojo;
+
+import java.util.Date;
+
+/**
+ * Change entity. @author MyEclipse Persistence Tools
+ */
+
+public class Change implements java.io.Serializable {
+
+	// Fields
+
+	private Integer changeid;
+	private Integer clientid;
+	private Float pay;
+	private Date date;
+	private String changetype;
+	private Integer flag;
+	private String clientname;
+	private String clientcard;
+	private String clientaddress;
+	private Integer eid;
+	private Float pay1;
+	private Float realpay1;
+
+	// Constructors
+
+	/** default constructor */
+	public Change() {
+	}
+
+	/** full constructor */
+	public Change(Integer clientid, Float pay, Date date, String changetype, Integer flag, String clientname,
+			String clientcard, String clientaddress, Integer eid, Float pay1, Float realpay1) {
+		this.clientid = clientid;
+		this.pay = pay;
+		this.date = date;
+		this.changetype = changetype;
+		this.flag = flag;
+		this.clientname = clientname;
+		this.clientcard = clientcard;
+		this.clientaddress = clientaddress;
+		this.eid = eid;
+		this.pay1 = pay1;
+		this.realpay1 = realpay1;
+	}
+
+	// Property accessors
+
+	public Integer getChangeid() {
+		return this.changeid;
+	}
+
+	public void setChangeid(Integer changeid) {
+		this.changeid = changeid;
+	}
+
+	public Integer getClientid() {
+		return this.clientid;
+	}
+
+	public void setClientid(Integer clientid) {
+		this.clientid = clientid;
+	}
+
+	public Float getPay() {
+		return this.pay;
+	}
+
+	public void setPay(Float pay) {
+		this.pay = pay;
+	}
+
+	public Date getDate() {
+		return this.date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getChangetype() {
+		return this.changetype;
+	}
+
+	public void setChangetype(String changetype) {
+		this.changetype = changetype;
+	}
+
+	public Integer getFlag() {
+		return this.flag;
+	}
+
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+
+	public String getClientname() {
+		return this.clientname;
+	}
+
+	public void setClientname(String clientname) {
+		this.clientname = clientname;
+	}
+
+	public String getClientcard() {
+		return this.clientcard;
+	}
+
+	public void setClientcard(String clientcard) {
+		this.clientcard = clientcard;
+	}
+
+	public String getClientaddress() {
+		return this.clientaddress;
+	}
+
+	public void setClientaddress(String clientaddress) {
+		this.clientaddress = clientaddress;
+	}
+
+	public Integer getEid() {
+		return this.eid;
+	}
+
+	public void setEid(Integer eid) {
+		this.eid = eid;
+	}
+
+	public Float getPay1() {
+		return this.pay1;
+	}
+
+	public void setPay1(Float pay1) {
+		this.pay1 = pay1;
+	}
+
+	public Float getRealpay1() {
+		return this.realpay1;
+	}
+
+	public void setRealpay1(Float realpay1) {
+		this.realpay1 = realpay1;
+	}
+
+}

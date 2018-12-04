@@ -1,0 +1,116 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'index.jsp' starting page</title>
+    <link rel="stylesheet"href="css/bg.css"type="text/css"/>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+	
+  </head>
+  
+  <body>
+  
+  <img src="images/login_05.gif"width="100%"height="100"> 
+  <div id="body" >
+  <img src="images/icon_1.bmp"width="50"height="50"> 
+   <img src="images/icon_2.bmp"width="50"height="50"> 
+    <img src="images/icon_3.bmp"width="50"height="50"> 
+     <img src="images/icon_4.bmp"width="50"height="50"> 
+      <img src="images/icon_5.bmp"width="50"height="50"> 
+       <img src="images/icon_6.bmp"width="50"height="50"> 
+        <img src="images/icon_7.bmp"width="50"height="50"> 
+         <img src="images/icon_8.bmp"width="50"height="50"> 
+          <img src="images/icon_9.bmp"width="50"height="50"> 
+  </div>
+  <div id="main">
+ 
+   <div id="font">菜单列表</div>
+   
+    <div id="esunTree" class="tree">系统菜单</div>
+   
+
+    
+  </body>
+  <script type="text/javascript">
+try{document.execCommand("BackgroundImageCache",false,true)}catch(e){};
+function Tree(data, el) {
+    this.app=function(par,tag){return par.appendChild(document.createElement(tag))};
+    this.create(document.getElementById(el),data)
+};
+Tree.fn = Tree.prototype = {
+    create: function (par,group){
+        var host=this, length = group.length;
+        for (var i = 0; i < length; i++) {
+            var dl =this.app(par,'DL'), dt = this.app(dl,'DT'), dd = this.app(dl,'DD');
+            dt.innerHTML='<a href="javascript:void(0)">'+group[i]['t']+'</a>';
+            if (!group[i]['s'])continue;
+            dt.group=group[i]['s'];
+            dt.className+=" node-close";
+            dt.onclick=function (){
+                var dd= this.nextSibling;
+                if (!dd.hasChildNodes()){
+                     host.create(dd,this.group);
+                     this.className='node-open'
+                 }else{
+                    var set=dd.style.display=='none'?['','node-open']:['none','node-close'];
+                     dd.style.display=set[0];
+                     this.className=set[1]
+                 }
+            }
+        }
+    }
+};
+var data=[{
+        t:'原粮兑换面粉',s:[
+            {t:'<a href=rawfoodinstore1 target="name">原粮入库</a>'},
+            {t:'<a href=rawfoodinstore.jsp target="name">面粉领用</a>'},
+            {t:'<a href=rawfoodinstore.jsp target="name">库存处理</a>'}
+        ]
+    },
+    {t:'面粉厂原粮购置',s:[{t:'<a href=rawfoodinstore.jsp target="name">面粉厂原粮购置</a>'}]},
+    {t:'面粉厂面粉加工',s:[{t:'<a href=rawfoodinstore.jsp target="name">面粉厂面粉加工</a>'}]},
+    {t:'面粉厂产品销售',s:[{t:'<a href=rawfoodinstore.jsp target="name">面粉厂产品销售</a>'}]},
+    {t:'欠款催收管理',s:[{t:'<a href=rawfoodinstore.jsp target="name">欠款催收管理</a>'}]},
+    {t:'面粉厂库存清点',s:[{t:'<a href=rawfoodinstore.jsp target="name">面粉厂库存清点</a>'}]},
+    {
+        t:'查询凭证报表',s:[
+            {t:'<a href=rawfoodinstore.jsp target="name">原粮入库查询</a>'},
+            {t:'<a href=rawfoodinstore.jsp target="name">原粮领用查询</a>'},
+            {t:'<a href=rawfoodinstore.jsp target="name">面粉加工查询</a>'},
+            {t:'<a href=rawfoodinstore.jsp target="name">产品出库查询</a>'},
+            {t:'<a href=rawfoodinstore.jsp target="name">原粮购置查询</a>'},
+            {t:'<a href=rawfoodinstore.jsp target="name">产品销售查询</a>'},
+            {t:'<a href=rawfoodinstore.jsp target="name">收入/支出查询</a>'},
+        ]
+    },
+    {
+        t:'系统参数',s:[
+            {t:'<a href=usermanage.jsp target="name">系统用户管理</a>'},
+            {t:'<a href="clientlogin" target="name">客户管理</a>'},
+            {t:'<a href="productlogin" target="name">产品类型管理</a>'}
+        ]
+    }
+];
+var et=new Tree(data,'esunTree');
+ //]]>
+</script>
+</div>
+ <div id="gb"><iframe src="welcome.jsp"width="700"height="570"name="wel"></div>
+  
+</html>

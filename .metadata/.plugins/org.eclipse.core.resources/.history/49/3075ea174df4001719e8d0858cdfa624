@@ -1,0 +1,25 @@
+package cn.com.dao;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.FlourprocessBiz;
+import cn.com.pojo.Process;
+import cn.com.services.BaseDao;
+@Repository("flourprocessDao")
+public class FlourprocessDao extends BaseDao implements FlourprocessBiz {
+	public void addflourprocess(Process process,int userid,Float rawweight,String type){
+	
+		
+		process.s
+		
+		
+	}
+
+	@Override
+	public void addflourprocess(java.lang.Process process, int userid, Float rawweight, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

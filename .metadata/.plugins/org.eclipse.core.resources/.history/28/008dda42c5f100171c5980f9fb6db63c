@@ -1,0 +1,87 @@
+package cn.com.pojo;
+
+import java.sql.Timestamp;
+
+import org.springframework.stereotype.Component;
+
+/**
+ * Instore entity. @author MyEclipse Persistence Tools
+ */
+@Component("instore")
+public class Instore implements java.io.Serializable {
+
+	// Fields
+
+	private Integer inid;
+	private Integer eid;
+	private Double weight;
+	private String type;
+	private Timestamp date;
+	private Integer clientid;
+
+	// Constructors
+
+	/** default constructor */
+	public Instore() {
+	}
+
+	/** full constructor */
+	public Instore(Integer eid, Double weight, String type, Timestamp date, Integer clientid) {
+		this.eid = eid;
+		this.weight = weight;
+		this.type = type;
+		this.date = date;
+		this.clientid = clientid;
+	}
+
+	// Property accessors
+
+	public Integer getInid() {
+		return this.inid;
+	}
+
+	public void setInid(Integer inid) {
+		this.inid = inid;
+	}
+
+	public Integer getEid() {
+		return this.eid;
+	}
+
+	public void setEid(Integer eid) {
+		this.eid = eid;
+	}
+
+	public Double getWeight() {
+		return this.weight;
+	}
+
+	public void setWeight(Double weight) {
+		this.weight = weight;
+	}
+
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Timestamp getDate() {
+		return this.date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+
+	public Integer getClientid() {
+		return this.clientid;
+	}
+
+	public void setClientid(Integer clientid) {
+		this.clientid = clientid;
+	}
+
+}

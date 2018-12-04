@@ -1,0 +1,117 @@
+package cn.com.action;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.CheckflourstoreBiz;
+import cn.com.biz.ExchangeBiz;
+import cn.com.biz.FlourprocessBiz;
+import cn.com.biz.FlourstoreBiz;
+import cn.com.biz.ProductBiz;
+import cn.com.pojo.Checkstore;
+import cn.com.pojo.Flourstore;
+import cn.com.pojo.Process;
+import cn.com.pojo.Product;
+@Controller("flourprocessAction")
+public class FlourprocessAction extends ActionSupport {
+	@Resource(name="checkflourstoreDao")
+	private CheckflourstoreBiz checkflourstoreBiz;
+	@Resource(name="process")
+	private Process process;
+
+
+	@Resource(name="product")
+	private Product product;
+	@Resource(name="productDao")
+	private ProductBiz productBiz;
+	@Resource(name="flourprocessDao")
+	private FlourprocessBiz flourprocessBiz;
+	@Resource(name="exchangeDao")
+	private ExchangeBiz exchangeBiz;
+	@Resource(name="flourstoreDao")
+	private FlourstoreBiz flourstoreBiz;
+	public String addflourprocess() throws ParseException{
+		String result="error";
+		String s2=ServletActionContext.getRequest().getParameter("process.date");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date date = format1.parse(s2);
+		String s0=ServletActionContext.getRequest().getParameter("processtype");
+		System.out.println(s0);
+		System.out.println(process.getBranweight());
+		process.setUserid(1);
+	    process.setDate(date);
+	    process.setType("80·Û");
+	    Flourstore flourstore=flourstoreBiz.findByType("Ð¡Âó");
+	    Flourstore flourstore2=flourstoreBiz.findByType(process.getType());
+	    Flourstore flourstore3=flourstoreBiz.findByType("ôïÆ¤");
+	    if(flourstore.getMillweight()>process.getRawweight()){
+		flourprocessBiz.addflourprocess(process, process.getUserid(),  process.getType());
+		flourstoreBiz.updateflourstore("Ð¡Âó", flourstore.getMillweight()-process.getRawweight());
+		  if(flourstore2.getMillweight()!=null){
+			 flourstoreBiz.updateflourstore(process.getType(), flourstore2.getMillweight()+process.getFlourweight());
+			  Checkstore checkstore=checkflourstoreBiz.findByName(process.getType());
+				
+				 
+			   checkstore.setSumstore(checkstore.getSumstore()+process.getFlourweight());
+				
+				
+				checkflourstoreBiz.updatecheckflouestore(checkstore);
+			  
+		  }
+		  else{
+			  flourstoreBiz.addflourstore(process.getType(), process.getFlourweight());
+		  }
+		  if(flourstore3!=null){
+			  flourstoreBiz.updateflourstore("ôïÆ¤", flourstore3.getMillweight()+process.getBranweight());
+		  }
+		  else{
+			  flourstoreBiz.addflourstore("ôïÆ¤", process.getBranweight());
+		  }
+	    result="addflourprocesssuccess";
+	    }
+	    else{
+	    	result="addflourprocesssuccess";
+	    }
+		return result;
+		
+	}
+	
+	public String init(){
+		String result="error";
+		
+		Flourstore flourstore=flourstoreBiz.findByType("Ð¡Âó");
+		ServletActionContext.getRequest().getSession().setAttribute("count", flourstore.getMillweight());
+		int id=flourprocessBiz.findcount();
+		ServletActionContext.getRequest().getSession().setAttribute("id", id);
+		List<Product> list=productBiz.findAll();
+	   
+			
+			ServletActionContext.getRequest().setAttribute("list", list);
+			
+			result="initsuccess";
+	
+		
+		
+		
+		return result;
+		
+	}
+	public Process getProcess() {
+		return process;
+	}
+
+	public void setProcess(Process process) {
+		this.process = process;
+	}
+
+}

@@ -1,0 +1,54 @@
+package cn.com.dao;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.ExchangeBiz;
+import cn.com.pojo.Exchange;
+import cn.com.services.BaseDao;
+@Repository("exchangeDao")
+public class ExchangeDao extends BaseDao implements ExchangeBiz {
+	public int findcount(){
+		
+		String hql = "select count(*) from Exchange e";
+		 List  list=super.find(hql);
+		 
+		
+		return list.size();
+		
+	}
+	public Exchange addexchange(int eid,String exchangetype,int clientid,Date date,Float pay,Boolean deficit,Float realpay,int userid ){
+		System.out.println("add");
+		Exchange exchange=null;
+		
+		System.out.println("add1");
+		exchange.setEid(eid);
+		System.out.println("add2");
+		exchange.setExchangetype(exchangetype);
+		System.out.println("add3");
+		exchange.setClientid(clientid);
+		System.out.println("add4");
+		exchange.setDate(date);
+		System.out.println("add5");
+		exchange.setDeficit(deficit);
+		System.out.println("add6");
+		exchange.setPay(pay);
+		exchange.setRealpay(realpay);
+		exchange.setUserid(userid);
+		System.out.println(exchange.getEid());
+		System.out.println(exchange.getExchangetype());
+		System.out.println(exchange.getClientid());
+		System.out.println(exchange.getDate());
+		System.out.println(exchange.getDeficit());
+		System.out.println(exchange.getPay());
+		System.out.println(exchange.getRealpay());
+		
+		System.out.println(exchange);
+		this.save(exchange);
+		
+		return exchange;
+	}
+
+}

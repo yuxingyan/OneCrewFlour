@@ -1,0 +1,161 @@
+package cn.com.action;
+
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.InquireBiz;
+import cn.com.pojo.Buy;
+import cn.com.pojo.Instore;
+import cn.com.pojo.Managestore;
+import cn.com.pojo.Sale;
+import cn.com.pojo.Useflour;
+@Controller("inquireAction")
+public class InquireAction extends ActionSupport {
+	
+	@Resource(name="inquireDao")
+	private InquireBiz inquireBiz;
+	public String instore() throws ParseException{
+		java.sql.Date sd1; 
+		java.sql.Date sd2; 
+		String result="error";
+		String s1=ServletActionContext.getRequest().getParameter("startdate");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d1= format1.parse(s1);
+		sd1 = new java.sql.Date(d1.getTime()); 
+		String s2=ServletActionContext.getRequest().getParameter("enddate");
+		DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d2= format1.parse(s2);
+		sd2 = new java.sql.Date(d2.getTime()); 
+		List<Instore> list=inquireBiz.instore(sd1, sd2);
+		if(list!=null){
+		ServletActionContext.getRequest().getSession().setAttribute("list", list);
+		result="instoresuccess";
+		
+		}else{
+			result="instoreerror";
+		}
+		return result;
+	}
+	public String useflour() throws ParseException{
+		java.sql.Date sd1; 
+		java.sql.Date sd2; 
+		String result="error";
+		String s1=ServletActionContext.getRequest().getParameter("startdate");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d1= format1.parse(s1);
+		sd1 = new java.sql.Date(d1.getTime()); 
+		String s2=ServletActionContext.getRequest().getParameter("enddate");
+		DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d2= format1.parse(s2);
+		sd2 = new java.sql.Date(d1.getTime()); 
+		List<Useflour> list=inquireBiz.useflour(sd1, sd2);
+		if(list!=null){
+		ServletActionContext.getRequest().getSession().setAttribute("list", list);
+		result="usefloursuccess";
+		
+		}else{
+			result="useflourerror";
+		}
+		return result;
+	}
+	public String process() throws ParseException{
+		java.sql.Date sd1; 
+		java.sql.Date sd2; 
+		String result="error";
+		String s1=ServletActionContext.getRequest().getParameter("startdate");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d1= format1.parse(s1);
+		sd1 = new java.sql.Date(d1.getTime()); 
+		String s2=ServletActionContext.getRequest().getParameter("enddate");
+		DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d2= format1.parse(s2);
+		sd2 = new java.sql.Date(d1.getTime()); 
+		List<Process> list=inquireBiz.process(sd1, sd2);
+		if(list!=null){
+		ServletActionContext.getRequest().getSession().setAttribute("list", list);
+		result="processsuccess";
+		
+		}else{
+			result="processerror";
+		}
+		return result;
+	}
+	public String managestore() throws ParseException{
+		java.sql.Date sd1; 
+		java.sql.Date sd2; 
+		String result="error";
+		String s1=ServletActionContext.getRequest().getParameter("startdate");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d1= format1.parse(s1);
+		sd1 = new java.sql.Date(d1.getTime()); 
+		String s2=ServletActionContext.getRequest().getParameter("enddate");
+		DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d2= format1.parse(s2);
+		sd2 = new java.sql.Date(d1.getTime()); 
+		List<Managestore> list=inquireBiz.managestore(sd1, sd2);
+		if(list!=null){
+		ServletActionContext.getRequest().getSession().setAttribute("list", list);
+		result="managestoresuccess";
+		
+		}else{
+			result="managestoreerror";
+		}
+		return result;
+	}
+	public String buy() throws ParseException{
+		java.sql.Date sd1; 
+		java.sql.Date sd2; 
+		String result="error";
+		String s1=ServletActionContext.getRequest().getParameter("startdate");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d1= format1.parse(s1);
+		sd1 = new java.sql.Date(d1.getTime()); 
+		String s2=ServletActionContext.getRequest().getParameter("enddate");
+		DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d2= format1.parse(s2);
+		sd2 = new java.sql.Date(d1.getTime()); 
+		List<Buy> list=inquireBiz.buy(sd1, sd2);
+		if(list!=null){
+		ServletActionContext.getRequest().getSession().setAttribute("list", list);
+		result="buysuccess";
+		
+		}else{
+			result="buyerror";
+		}
+		return result;
+	}
+	public String sale() throws ParseException{
+		java.sql.Date sd1; 
+		java.sql.Date sd2; 
+		String result="error";
+		String s1=ServletActionContext.getRequest().getParameter("startdate");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d1= format1.parse(s1);
+		sd1 = new java.sql.Date(d1.getTime()); 
+		String s2=ServletActionContext.getRequest().getParameter("enddate");
+		DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d2= format1.parse(s2);
+		sd2 = new java.sql.Date(d1.getTime()); 
+		List<Sale> list=inquireBiz.sale(sd1, sd2);
+		if(list!=null){
+		ServletActionContext.getRequest().getSession().setAttribute("list", list);
+		result="salesuccess";
+		
+		}else{
+			result="saleerror";
+		}
+		return result;
+	}
+
+}

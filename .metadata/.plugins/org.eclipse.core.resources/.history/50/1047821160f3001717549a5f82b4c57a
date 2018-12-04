@@ -1,0 +1,58 @@
+package cn.com.services;
+
+import java.util.List;
+
+import javax.jms.Session;
+
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+public class BaseDao extends HibernateDaoSupport {
+	public List find(String hql){
+		
+		List list=getHibernateTemplate().find(hql);
+		
+		return list;
+	}
+
+	public int save(Object obj){
+		int result=0;
+		try{
+	
+		    
+			getHibernateTemplate().save(obj);
+			result=1;
+		}catch(Exception e){
+			e.printStackTrace();
+			result=0;
+		}
+		
+		
+		return result;
+	}
+	public int delete(Object obj){
+		int result=0;
+		try{
+			getHibernateTemplate().delete(obj);
+			result=1;
+		}catch(Exception e){
+			e.printStackTrace();
+			result=0;
+		}
+		
+		
+		return result;
+	}
+	public int update(Object obj){
+		int result=0;
+		try{
+			getHibernateTemplate().update(obj);
+			result=1;
+		}catch(Exception e){
+			e.printStackTrace();
+			result=0;
+		}
+		
+		
+		return result;
+	}
+
+}

@@ -1,0 +1,55 @@
+package cn.com.dao;
+
+
+import java.sql.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.InquireBiz;
+import cn.com.pojo.Buy;
+import cn.com.pojo.Instore;
+import cn.com.pojo.Managestore;
+import cn.com.pojo.Sale;
+import cn.com.pojo.Useflour;
+import cn.com.services.BaseDao;
+@Repository("inquireDao")
+public class InquireDao extends BaseDao implements InquireBiz {
+	public List instore(Date d1,Date d2){
+		System.out.println(d1);
+		String hql="from Instore i where i.date between "+d1+" and "+d2;
+		
+		System.out.println("11111");
+		List<Instore> list=super.find(hql);
+		System.out.println(list.size());
+		return list;
+	}
+	public List useflour(Date d1,Date d2){
+		String hql="from Useflour i where i.date between "+d1+" and "+d2;
+		List<Useflour> list=super.find(hql);
+		return list;
+	}
+	public List process(Date d1,Date d2){
+		String hql="from Process i where i.date between "+d1+" and "+d2;
+		List<Process> list=super.find(hql);
+		return list;
+	}
+	public List managestore(Date d1,Date d2){
+		String hql="from Managestore i where i.date between "+d1+" and "+d2;
+		List<Managestore> list=super.find(hql);
+		return list;
+	}
+	public List buy(Date d1,Date d2){
+		String hql="from Buy i where i.date between "+d1+" and "+d2;
+		List<Buy> list=super.find(hql);
+		return list;
+	}
+	public List sale(Date d1,Date d2){
+		String hql="from Sale i where i.date between "+d1+" and "+d2;
+		List<Sale> list=super.find(hql);
+		return list;
+	}
+	
+	
+
+}

@@ -1,0 +1,14 @@
+package cn.com.dao;
+
+import cn.com.biz.ExchangeBiz;
+import cn.com.services.BaseDao;
+
+public class ExchangeDao extends BaseDao implements ExchangeBiz {
+	public int findcount(){
+		
+		String hql = "select count(*) from Exchange e";
+		return 1;
+		
+	}
+
+}

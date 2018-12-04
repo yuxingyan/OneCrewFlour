@@ -1,0 +1,8 @@
+package cn.com.biz;
+
+import cn.com.pojo.Change;
+
+public interface ChangeBiz {
+	public void addchange(Change change);
+
+}

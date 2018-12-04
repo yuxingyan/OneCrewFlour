@@ -1,0 +1,9 @@
+package cn.com.biz;
+
+import cn.com.pojo.Checkstore;
+
+public interface CheckflourstoreBiz {
+	public void addcheckflouestore(Checkstore checkstore);
+	public Checkstore findByName(String type);
+
+}

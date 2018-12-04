@@ -1,0 +1,44 @@
+package cn.com.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.ClientstoreBiz;
+import cn.com.pojo.Client;
+import cn.com.pojo.Clientstore;
+import cn.com.services.BaseDao;
+@Repository("clientstoreDao")
+public class ClientstoreDao extends BaseDao implements ClientstoreBiz {
+	
+	public  void addclientstore( int clientid,String type,Float weight){
+		Clientstore clientstore=new Clientstore();
+		clientstore.setClientid(clientid);
+		clientstore.setType(type);
+		clientstore.setWeight(weight);
+		super.save(clientstore);
+		
+		
+	}
+	public Clientstore findByIdType(int clientid,String type){
+		String hql = "from Clientstore c where c.clientid = "+clientid+" and c.type="+type+"";
+		List list = super.find(hql);
+		if (list !=null && list.size()>0) {
+			 return (Clientstore) list.get(0);
+		} 
+		else{
+			return null;
+		}
+		
+		
+	}
+	public void updateclientstore(int clientid,String type,Float weight){
+		Clientstore clientstore=this.findById(clientid,type);
+		clientstore.
+		
+		
+		
+		
+	}
+
+}

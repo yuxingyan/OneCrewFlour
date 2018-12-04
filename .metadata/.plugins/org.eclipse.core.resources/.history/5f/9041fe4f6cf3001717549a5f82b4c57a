@@ -1,0 +1,28 @@
+package cn.com.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.ExchangeBiz;
+import cn.com.pojo.Exchange;
+import cn.com.services.BaseDao;
+@Repository("exchangeDao")
+public class ExchangeDao extends BaseDao implements ExchangeBiz {
+	public int findcount(){
+		
+		String hql = "select count(*) from Exchange e";
+		 List  list=super.find(hql);
+		 
+		
+		return list.size();
+		
+	}
+	public Exchange addexchange(int eid,String exchangetype){
+		Exchange exchange=null;
+		exchange.setEid(eid);
+		
+		return exchange;
+	}
+
+}

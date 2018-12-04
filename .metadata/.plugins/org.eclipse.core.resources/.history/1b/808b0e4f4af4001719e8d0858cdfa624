@@ -1,0 +1,8 @@
+package cn.com.dao;
+
+import cn.com.biz.FlourprocessBiz;
+import cn.com.services.BaseDao;
+
+public class FlourprocessDao extends BaseDao implements FlourprocessBiz {
+
+}

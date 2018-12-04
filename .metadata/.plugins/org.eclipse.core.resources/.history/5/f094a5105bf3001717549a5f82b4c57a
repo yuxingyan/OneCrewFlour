@@ -1,0 +1,85 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'rawfoodinstore.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script language="javascript" type="text/javascript">
+		//弹出信息窗口
+		function showWindow(){
+		
+			window.open ('inquireclient.jsp','add', 
+'height=600, width=800, top=60, left=200, toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no, status=no') ;
+} 
+
+		 </script>
+  </head>
+ 
+  <body>
+   <form action="addinstore">
+<strong>原粮兑换面粉</strong>|原粮入库
+<table border="1">
+
+	<tr align="center" >
+		<td colspan="4" align="center">原粮入库</td>
+	</tr>
+	  
+	<tr>
+		<td align="right">凭证编号：</td>
+		<td><input type="text" name="instore.eid"readonly/></td>
+		<td>日期：</td>
+		<td><input type="date" name="instore.date"/></td>
+	</tr>
+	
+	<tr>
+		<td align="right">编号：</td>
+		
+		<td><input type="button" onclick="showWindow();" value="获取"readonly/></td>
+		<td>姓名：</td>
+		 
+		<td><input id="nametext"type="text" value=""/></td>
+		
+	</tr>
+	
+	<tr>
+		<td align="right" >地址：</td>
+		<td colspan="3"><input id="addresstext"value="" type="text"/ size="55"readonly></td>
+	</tr>
+	<tr>
+		<td colspan="4">交易明细</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">名称</td>
+		<td colspan="2" align="center">重量</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">小麦</td>
+		<td colspan="2"><input type="text"name="instore.weight"/></td>
+	</tr>
+	
+
+	<tr>
+		<td colspan="2" align="center"><input type="submit" value="保存"/></td>
+		<td colspan="2" align="center"><button type="button" />取消</td>
+	</tr>
+
+</table>
+</form>
+  </body>
+</html>

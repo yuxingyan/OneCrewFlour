@@ -1,0 +1,40 @@
+package cn.com.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.biz.FlourstoreBiz;
+import cn.com.pojo.Clientstore;
+import cn.com.pojo.Flourstore;
+import cn.com.services.BaseDao;
+@Repository("flourstoreDao")
+public class FlourstoreDao extends BaseDao implements FlourstoreBiz {
+	public void addflourstore(String type,Float weight){
+		Flourstore flourstore=new Flourstore();
+		flourstore.setType(type);
+		flourstore.setMillweight(weight);
+		super.save(flourstore);
+		
+	}
+	public Flourstore findByType(String type){
+		String hql = "from Flourstore f where  f.type="+type+"";
+		List list = super.find(hql);
+		if (list !=null && list.size()>0) {
+			 return (Flourstore) list.get(0);
+		} 
+		else{
+			return null;
+		}
+		
+		
+	}
+	public void updateflourstore(String type,Float weight){
+		Flourstore flourstore=this.findByType(type);
+		super.update(flourstore);
+		
+		
+		
+	}
+
+}

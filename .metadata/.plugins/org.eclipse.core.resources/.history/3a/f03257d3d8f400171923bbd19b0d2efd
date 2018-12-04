@@ -1,0 +1,8 @@
+package cn.com.dao;
+
+import cn.com.biz.FlouruseBiz;
+import cn.com.services.BaseDao;
+
+public class FlouruseDao extends BaseDao implements FlouruseBiz {
+
+}

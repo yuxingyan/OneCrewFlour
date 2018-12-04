@@ -1,0 +1,138 @@
+package cn.com.action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.biz.UserBiz;
+import cn.com.pojo.User;
+
+
+@Controller("userAction")
+public class UserAction extends ActionSupport  {
+	
+	@Resource(name="user")
+	private User user;
+	@Resource(name="userDao")
+	private UserBiz userBiz;
+
+    public String login(){
+		
+		String result="error";
+		User user1=userBiz.login(user.getUsername(), user.getPassword());
+		if(user1 !=null){
+			List<User> list = userBiz.findAll();
+			if(list!=null){	
+			ServletActionContext.getRequest().getSession().setAttribute("list", list);
+			result="success";
+			}
+		}else{
+			ServletActionContext.getRequest().setAttribute("error", "error");
+			result="error";
+		}
+		return result;
+	}
+    public String adduser(){
+    	String result="error";
+    	user.setPassword("123456");
+    	Date date = new Date();
+		Timestamp nousedate = new Timestamp(date.getTime());
+		user.setTime(nousedate);
+    	User user2=userBiz.adduser(user);
+    	if(user2 !=null){
+			List<User> list = userBiz.findAll();
+			if(list!=null){
+			ServletActionContext.getRequest().getSession().setAttribute("list", list);
+			result="addsuccess";
+			}
+		}else{
+			ServletActionContext.getRequest().setAttribute("error", "error");
+			result="adderror";
+		}
+		return result;
+    	
+    }
+    public String deleteuser() {
+    
+	
+    	Integer id= Integer.valueOf(ServletActionContext.getRequest().getParameter("movebox"));
+		String i = userBiz.deleteuser(id);
+		
+		if(i=="success"){
+			List<User> list = userBiz.findAll();
+			ServletActionContext.getRequest().getSession().setAttribute("list", list);
+			return "deletesuccess";
+			
+		}
+		else{
+			
+			return"deleteerror";
+		}
+		//ÅÐ¶ÏÊÇ·ñÉ¾³ý³É¹¦
+	
+		
+    }
+    public String modifyuser(){
+    	String result="error";
+    	User user2=userBiz.findById(user.getUserid());
+    
+    	if(user2.getPassword().equals(user.getPassword())){
+    		
+    		if(ServletActionContext.getRequest().getParameter("newpwd").equals(ServletActionContext.getRequest().getParameter("newpwd1"))){
+    			
+    		userBiz.update(user.getUserid(),user.getUsername(),user.getName(),user.getPhone(),ServletActionContext.getRequest().getParameter("newpwd"));
+    		List<User> list = userBiz.findAll();
+    		ServletActionContext.getRequest().getSession().setAttribute("list", list);
+			result="modifysuccess";
+    		}else{
+    			ServletActionContext.getRequest().setAttribute("error", "error");
+    			result="modifyerror";
+    		}
+    	}else{
+    		ServletActionContext.getRequest().setAttribute("error", "error");
+			result="modifyerror";
+    	}
+    	
+    	return result;
+    }
+    public String passmodify(){
+    	String result="error";
+    	
+    	Integer id= Integer.valueOf(ServletActionContext.getRequest().getParameter("modify"));
+    	
+		User user2=userBiz.findById(id);
+		if(user2!=null){
+			ServletActionContext.getRequest().getSession().setAttribute("list", user2);
+			result="passsuccess";
+		}
+		else{
+			result="passerror";
+		}
+		return result;
+    	
+    }
+  
+
+	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+
+	 }
+
+
+}

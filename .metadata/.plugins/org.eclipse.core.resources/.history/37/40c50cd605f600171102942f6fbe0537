@@ -1,0 +1,73 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'inquireuse.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script language="javascript" type="text/javascript">
+ function Check(){
+   
+   var n1=document.getElementById("date1").value;
+   var n2=document.getElementById("date2").value;
+ 
+      var erroring="";
+ 
+      if(n1==""||n1==null){
+        erroring+="请输入起始日期!"+'\n';
+  }
+ if(n2==""||n2==null){
+     erroring+="请输入截止日期!"+'\n';
+  }
+ 
+  if(erroring.length!=0){
+  alert(erroring);
+  return false;
+
+  
+  }else{
+  
+     document.form1.submit();    
+  
+  }
+}
+</script>
+  </head>
+  
+  <body>
+     <center>
+     <form name="原粮领用统计" action="inquireuseflour" method="post">
+    <p><b>查询统计报表</b>原粮领用统计</p>
+    <table border="1" width="600">
+    <tr><td colspan="10" ></td></tr>
+    <tr height="20px"><td align="center" colspan="4" >原粮领用统计</td></tr> 
+    <tr height="20px"><td align="center" colspan="4" ></td></tr> 
+    <tr height="20px"><td align="center" colspan="4" >起始日期：<input type="date" name="startdate"/></td>
+    </tr>
+    <tr height="20px"><td align="center" colspan="4" >截止日期：<input type="date" name="endstart"/></td>
+    </tr>
+    <tr height="20px"><td align="center" colspan="4" ></td></tr> 
+    <tr><td align="center" colspan="10" >
+      <button type="submit">确定</button>
+      <button type="button">取消</button>
+    </td>
+    </tr>
+    </table>
+    </form>
+    </center>
+  </body>
+</html>

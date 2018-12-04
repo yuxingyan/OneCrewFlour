@@ -1,0 +1,67 @@
+package cn.com.pojo;
+
+
+
+/**
+ * Change entity. @author MyEclipse Persistence Tools
+ */
+
+public class Change  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Integer changeid;
+     private Integer clientid;
+     private Float pay;
+
+
+    // Constructors
+
+    /** default constructor */
+    public Change() {
+    }
+
+    
+    /** full constructor */
+    public Change(Integer clientid, Float pay) {
+        this.clientid = clientid;
+        this.pay = pay;
+    }
+
+   
+    // Property accessors
+
+    public Integer getChangeid() {
+        return this.changeid;
+    }
+    
+    public void setChangeid(Integer changeid) {
+        this.changeid = changeid;
+    }
+
+    public Integer getClientid() {
+        return this.clientid;
+    }
+    
+    public void setClientid(Integer clientid) {
+        this.clientid = clientid;
+    }
+
+    public Float getPay() {
+        return this.pay;
+    }
+    
+    public void setPay(Float pay) {
+        this.pay = pay;
+    }
+   
+
+
+
+
+
+
+
+
+}

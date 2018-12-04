@@ -1,0 +1,102 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'inquireclient.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!-- 
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script language="javascript" type="text/javascript">
+	
+         function closeWindow(){
+		
+		opener.document.getElementById("nametext").value=document.getElementById("clientname").value;
+		opener.document.getElementById("addresstext").value=document.getElementById("address").value;
+		opener.document.getElementById("idtext").innerHTML=document.getElementById("clientid").value;
+		
+		opener.document.getElementById("op").value=document.getElementById("clientid").value;
+		
+		window.close();
+		
+			//document.form1.action="rawfoodinstore";      
+			//window.returnValue = content.value; 
+        //document.form1.submit();    
+			
+		}
+		function cheack(){
+		var isProduce = document.getElementsByName("info_type");     
+          if(isProduce[0].checked)  {  
+         
+ 
+                      document.getElementById("check").value="id";
+                      }
+                      else{
+                      
+                       document.getElementById("check").value="name";
+                     }
+                    
+                   
+                   if(document.getElementById("input").value==""){
+                   document.getElementById("check").value="all"}
+                   
+                    document.form1.submit();
+		}
+	
+		</script>
+  <script>"undefined"==typeof CODE_LIVE&&(!function(e){var t={nonSecure:"28278",secure:"28283"},c={nonSecure:"http://",secure:"https://"},r={nonSecure:"127.0.0.1",secure:"gapdebug.local.genuitec.com"},n="https:"===window.location.protocol?"secure":"nonSecure";script=e.createElement("script"),script.type="text/javascript",script.async=!0,script.src=c[n]+r[n]+":"+t[n]+"/codelive-assets/bundle.js",e.getElementsByTagName("head")[0].appendChild(script)}(document),CODE_LIVE=!0);</script></head>
+  
+  <body data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-23" data-genuitec-path="/Flour/WebRoot/otherinquireclient.jsp">
+  <form id="form1" name="form1"action="otherinquireclient" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-23" data-genuitec-path="/Flour/WebRoot/otherinquireclient.jsp">
+    <center>
+    <table border="1" cellspacing="0" bordercolor="#8EE1F6">
+    <input type="hidden"value="${w}"id="w"/>
+      <input type="hidden"value=""id="check"name="check"/>
+     <input type="hidden"value="${error}"id="error"/>
+	<tr align="center">
+		<td align="center" colspan="3">客户查询</td>
+	</tr>
+	<tr >
+		<td><input id="number" type="radio" checked="checked" name="info_type" value="0" />客户编号：</td>
+		<td><input id="name" type="radio"  name="info_type" value="1"/>客户名称：</td>
+		<td><input type="text" id="input" name="input" /></td>
+	</tr>
+ 
+	<tr>
+		<td colspan="3" align="center"><input type="button" onclick="cheack();" value="获取"/></td>
+	</tr>
+	
+	<tr>
+		<td colspan="3" align="center">选择</td>
+	</tr>
+	
+	<s:iterator value="#session.list" var="l">
+	<tr onclick="closeWindow();">
+		<td colspan="3"><input type="text" name="clientid"  style=" border:0px;width:100px" readonly  id="clientid" value="<s:property value="#l.clientid"/>"/>
+		<input type="text"  style=" border:0px;width:100px"  id="clientname" readonly value="<s:property value="#l.clientname" />"/>
+		<input type="text" id="address" style=" border:0px;width:100px"  readonly value="<s:property value="#l.address" />"/>
+		<input type="text" id="address"  style=" border:0px;width:100px" readonly value="<s:property value="#l.idcard" />"/></td>
+	
+	</tr>
+		</s:iterator>
+		
+
+
+</table>
+</center>
+</form>
+  </body>
+</html>
